@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle("Koktajlowe API")
     .setDescription("API do zarządzania koktajlami")
     .setVersion("1.0")
-    .addTag("koktajle")
+    .addTag("koktajlownik")
 
     .build();
 
