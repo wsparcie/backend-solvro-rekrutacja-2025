@@ -9,4 +9,8 @@ export class AppService {
       uptime: process.uptime(),
     };
   }
+
+  getHello(): string {
+    return "Hello World!";
+  }
 }

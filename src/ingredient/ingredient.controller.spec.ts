@@ -1,4 +1,5 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import type { TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 
 import { IngredientController } from "./ingredient.controller";
 import { IngredientService } from "./ingredient.service";

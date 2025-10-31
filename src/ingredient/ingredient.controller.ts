@@ -7,32 +7,62 @@ import {
   Patch,
   Post,
 } from "@nestjs/common";
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateIngredientDto } from "./dto/create-ingredient.dto";
 import { UpdateIngredientDto } from "./dto/update-ingredient.dto";
 import { IngredientService } from "./ingredient.service";
 
+@ApiTags("ingredient")
 @Controller("ingredient")
 export class IngredientController {
   constructor(private readonly ingredientService: IngredientService) {}
 
   @Post()
-  create(@Body() createIngredientDto: CreateIngredientDto) {
+  @ApiOperation({ description: "Create a new ingredient" })
+  @ApiCreatedResponse({
+    description: "Ingredient created successfully",
+    type: CreateIngredientDto,
+  })
+  @ApiBadRequestResponse({ description: "Invalid input" })
+  async create(@Body() createIngredientDto: CreateIngredientDto) {
     return this.ingredientService.create(createIngredientDto);
   }
 
   @Get()
-  findAll() {
+  @ApiOperation({ description: "Get all ingredients" })
+  @ApiOkResponse({
+    description: "List of ingredients",
+    type: [CreateIngredientDto],
+  })
+  async findAll() {
     return this.ingredientService.findAll();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
+  @ApiOperation({ description: "Get ingredient by ID" })
+  @ApiOkResponse({ description: "Ingredient found", type: CreateIngredientDto })
+  @ApiNotFoundResponse({ description: "Ingredient not found" })
+  async findOne(@Param("id") id: string) {
     return this.ingredientService.findOne(+id);
   }
 
   @Patch(":id")
-  update(
+  @ApiOperation({ description: "Update ingredient by ID" })
+  @ApiOkResponse({
+    description: "Ingredient updated",
+    type: UpdateIngredientDto,
+  })
+  @ApiBadRequestResponse({ description: "Invalid input" })
+  @ApiNotFoundResponse({ description: "Ingredient not found" })
+  async update(
     @Param("id") id: string,
     @Body() updateIngredientDto: UpdateIngredientDto,
   ) {
@@ -40,7 +70,10 @@ export class IngredientController {
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string) {
+  @ApiOperation({ description: "Delete ingredient by ID" })
+  @ApiOkResponse({ description: "Ingredient deleted" })
+  @ApiNotFoundResponse({ description: "Ingredient not found" })
+  async remove(@Param("id") id: string) {
     return this.ingredientService.remove(+id);
   }
 }
