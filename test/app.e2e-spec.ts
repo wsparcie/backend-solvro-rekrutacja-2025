@@ -1,4 +1,4 @@
-import * as request from "supertest";
+import request from "supertest";
 import type { App } from "supertest/types";
 
 import type { INestApplication } from "@nestjs/common";
@@ -23,6 +23,6 @@ describe("AppController (e2e)", () => {
     return request(app.getHttpServer())
       .get("/")
       .expect(200)
-      .expect("Hello World!");
+      .expect("Hello, I am Cocktails API!");
   });
 });

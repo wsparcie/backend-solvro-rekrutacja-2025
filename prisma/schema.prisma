@@ -13,25 +13,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum CocktailCategory {
+  ORDINARY_DRINK
+  COCKTAIL
+  SHAKE
+  COCOA
+  SHOT
+  COFFEE_TEA
+  HOMEMADE_LIQUEUR
+  PUNCH_PARTY_DRINK
+  BEER
+  SOFT_DRINK
+}
+
+enum IngredientType {
+  ALCOHOLIC
+  NON_ALCOHOLIC
+}
+
 model Cocktail {
-  id           Int                  @id @default(autoincrement())
-  name         String
-  category     String
-  instructions String
-  ingredients  CocktailIngredient[]
-  createdAt    DateTime             @default(now())
-  updatedAt    DateTime             @updatedAt
+  id          Int                  @id @default(autoincrement())
+  name        String
+  category    CocktailCategory
+  instruction String
+  ingredients CocktailIngredient[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
 }
 
 model Ingredient {
   id          Int                  @id @default(autoincrement())
   name        String               @unique
   description String
-  isAlcohol   Boolean
+  type        IngredientType
   photo       String
   cocktails   CocktailIngredient[]
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
 }
 
 model CocktailIngredient {
@@ -39,8 +63,8 @@ model CocktailIngredient {
   ingredientId Int
   quantity     String
 
-  cocktail   Cocktail   @relation(fields: [cocktailId], references: [id])
-  ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+  cocktail   Cocktail   @relation(fields: [cocktailId], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
 
   @@id([cocktailId, ingredientId])
 }
