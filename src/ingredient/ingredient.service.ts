@@ -1,7 +1,14 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
+
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 
 import { DatabaseService } from "../database/database.service";
 import { CreateIngredientDto } from "./dto/create-ingredient.dto";
+import { FilterIngredientDto } from "./dto/filter-ingredient.dto";
 import { UpdateIngredientDto } from "./dto/update-ingredient.dto";
 
 @Injectable()
@@ -12,15 +19,29 @@ export class IngredientService {
     return this.database.ingredient.create({
       data: {
         name: createIngredientDto.name,
-        description: createIngredientDto.description ?? "",
-        isAlcohol: createIngredientDto.isAlcohol,
+        description: createIngredientDto.description,
+        type: createIngredientDto.type,
         photo: createIngredientDto.photo,
       },
     });
   }
 
-  async findAll() {
-    return this.database.ingredient.findMany();
+  async findAll(filterDto?: FilterIngredientDto) {
+    const where: Prisma.IngredientWhereInput = {};
+
+    if (filterDto?.type !== undefined) {
+      where.type = filterDto.type;
+    }
+
+    const orderBy: Prisma.IngredientOrderByWithRelationInput = {};
+    if (filterDto?.sortBy !== undefined) {
+      orderBy[filterDto.sortBy] = filterDto.sortOrder ?? "asc";
+    }
+
+    return this.database.ingredient.findMany({
+      where,
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : undefined,
+    });
   }
 
   async findOne(id: number) {
@@ -59,8 +80,8 @@ export class IngredientService {
     });
 
     if (cocktails.length > 0) {
-      throw new Error(
-        `Cannot delete ingredient as it is used in ${String(cocktails.length)} cocktails`,
+      throw new BadRequestException(
+        `Can't delete ingredient as it is used in ${String(cocktails.length)} cocktails`,
       );
     }
 

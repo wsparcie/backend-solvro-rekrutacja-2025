@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
@@ -18,6 +19,7 @@ import {
 
 import { CocktailService } from "./cocktail.service";
 import { CreateCocktailDto } from "./dto/create-cocktail.dto";
+import { FilterCocktailDto } from "./dto/filter-cocktail.dto";
 import { UpdateCocktailDto } from "./dto/update-cocktail.dto";
 
 @ApiTags("cocktail")
@@ -37,13 +39,15 @@ export class CocktailController {
   }
 
   @Get()
-  @ApiOperation({ description: "Get all cocktails" })
+  @ApiOperation({
+    description: "Get all cocktails with optional filtering and sorting",
+  })
   @ApiOkResponse({
     description: "List of cocktails",
     type: [CreateCocktailDto],
   })
-  async findAll() {
-    return this.cocktailService.findAll();
+  async findAll(@Query() filterDto: FilterCocktailDto) {
+    return this.cocktailService.findAll(filterDto);
   }
 
   @Get(":id")

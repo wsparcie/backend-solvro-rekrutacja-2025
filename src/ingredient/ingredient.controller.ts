@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
@@ -17,6 +18,7 @@ import {
 } from "@nestjs/swagger";
 
 import { CreateIngredientDto } from "./dto/create-ingredient.dto";
+import { FilterIngredientDto } from "./dto/filter-ingredient.dto";
 import { UpdateIngredientDto } from "./dto/update-ingredient.dto";
 import { IngredientService } from "./ingredient.service";
 
@@ -37,13 +39,15 @@ export class IngredientController {
   }
 
   @Get()
-  @ApiOperation({ description: "Get all ingredients" })
+  @ApiOperation({
+    description: "Get all ingredients with optional filtering and sorting",
+  })
   @ApiOkResponse({
     description: "List of ingredients",
     type: [CreateIngredientDto],
   })
-  async findAll() {
-    return this.ingredientService.findAll();
+  async findAll(@Query() filterDto: FilterIngredientDto) {
+    return this.ingredientService.findAll(filterDto);
   }
 
   @Get(":id")

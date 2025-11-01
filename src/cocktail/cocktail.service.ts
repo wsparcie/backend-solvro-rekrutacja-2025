@@ -1,7 +1,10 @@
+import { Prisma } from "@prisma/client";
+
 import { Injectable, NotFoundException } from "@nestjs/common";
 
 import { DatabaseService } from "../database/database.service";
 import { CreateCocktailDto } from "./dto/create-cocktail.dto";
+import { FilterCocktailDto } from "./dto/filter-cocktail.dto";
 import { UpdateCocktailDto } from "./dto/update-cocktail.dto";
 
 @Injectable()
@@ -12,7 +15,9 @@ export class CocktailService {
     const { ingredients, ...cocktailData } = createCocktailDto;
     return this.database.cocktail.create({
       data: {
-        ...cocktailData,
+        name: cocktailData.name,
+        category: cocktailData.category,
+        instruction: cocktailData.instruction,
         ingredients: {
           create: ingredients.map((ingredient) => ({
             quantity: ingredient.quantity,
@@ -32,8 +37,39 @@ export class CocktailService {
     });
   }
 
-  async findAll() {
+  async findAll(filterDto?: FilterCocktailDto) {
+    const where: Prisma.CocktailWhereInput = {};
+
+    if (filterDto?.ingredientId !== undefined) {
+      where.ingredients = {
+        some: {
+          ingredientId: filterDto.ingredientId,
+        },
+      };
+    }
+
+    if (filterDto?.category !== undefined) {
+      where.category = filterDto.category;
+    }
+
+    if (filterDto?.ingredientType !== undefined) {
+      where.ingredients = {
+        some: {
+          ingredient: {
+            type: filterDto.ingredientType,
+          },
+        },
+      };
+    }
+
+    const orderBy: Prisma.CocktailOrderByWithRelationInput = {};
+    if (filterDto?.sortBy !== undefined) {
+      orderBy[filterDto.sortBy] = filterDto.sortOrder ?? "asc";
+    }
+
     return this.database.cocktail.findMany({
+      where,
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : undefined,
       include: {
         ingredients: {
           include: {

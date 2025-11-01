@@ -13,7 +13,7 @@ async function main() {
         name: "Vodka",
         description:
           "Vodka is a distilled beverage composed primarily of water and ethanol, sometimes with traces of impurities and flavorings. Traditionally, vodka is made by the distillation of fermented cereal grains or potatoes, though some modern brands use other substances, such as fruits or sugar.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/vodka.png",
       },
       {
@@ -21,7 +21,7 @@ async function main() {
         name: "Gin",
         description:
           "Gin is a distilled alcoholic drink that derives its predominant flavour from juniper berries (Juniperus communis). Gin is one of the broadest categories of spirits, all of various origins, styles, and flavour profiles, that revolve around juniper as a common ingredient.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/gin.png",
       },
       {
@@ -29,7 +29,7 @@ async function main() {
         name: "Rum",
         description:
           "Rum is a distilled alcoholic beverage made from sugarcane byproducts, such as molasses, or directly from sugarcane juice, by a process of fermentation and distillation. The distillate, a clear liquid, is then usually aged in oak barrels.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/rum.png",
       },
       {
@@ -37,7 +37,7 @@ async function main() {
         name: "Tequila",
         description:
           "Tequila is a regionally specific distilled beverage and type of alcoholic drink made from the blue agave plant, primarily in the area surrounding the city of Tequila.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/tequila.png",
       },
       {
@@ -45,7 +45,7 @@ async function main() {
         name: "Scotch",
         description:
           "Scotch whisky, often simply called Scotch, is malt whisky or grain whisky made in Scotland. Scotch whisky must be made in a manner specified by law.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/scotch.png",
       },
       {
@@ -53,7 +53,7 @@ async function main() {
         name: "Absolut Kurant",
         description:
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/absolut-kurant.png",
       },
@@ -62,7 +62,7 @@ async function main() {
         name: "Absolut Peppar",
         description:
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/absolut-peppar.png",
       },
@@ -71,7 +71,7 @@ async function main() {
         name: "Absolut Vodka",
         description:
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/absolut-vodka.png",
       },
@@ -80,7 +80,7 @@ async function main() {
         name: "Advocaat",
         description:
           "Advocaat or advocatenborrel is a traditional Dutch alcoholic beverage made from eggs, sugar and brandy.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/advocaat.png",
       },
       {
@@ -88,7 +88,7 @@ async function main() {
         name: "Aejo Rum",
         description:
           'The origin of the word "rum" is generally unclear. In an 1824 essay about the word\'s origin, Samuel Morewood, a British etymologist, suggested it might be from the British slang term for "the best", as in "having a rum time."',
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/aejo-rum.png",
       },
       {
@@ -96,7 +96,7 @@ async function main() {
         name: "Aftershock",
         description:
           "This cinnamon flavoured liqueur has proved immensely popular since its introduction. Normally drunk as a shooter.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/aftershock.png",
       },
       {
@@ -104,7 +104,7 @@ async function main() {
         name: "Agave Syrup",
         description:
           "Agave nectar (more accurately called agave syrup) is a sweetener commercially produced from several species of agave, including Agave tequilana (blue agave) and Agave salmiana.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/agave-syrup.png",
       },
       {
@@ -112,7 +112,7 @@ async function main() {
         name: "Ale",
         description:
           "Ale is a type of beer brewed using a warm fermentation method, resulting in a sweet, full-bodied and fruity taste.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/ale.png",
       },
       {
@@ -120,7 +120,7 @@ async function main() {
         name: "Allspice",
         description:
           "A spice made from dried berries of the Pimenta dioica plant.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/allspice.png",
       },
       {
@@ -128,7 +128,7 @@ async function main() {
         name: "Almond Flavoring",
         description:
           "A flavoring extract made from almonds or artificial almond flavoring.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/almond-flavoring.png",
       },
@@ -137,7 +137,7 @@ async function main() {
         name: "Almond",
         description:
           "The edible seed of an almond tree, commonly used in cocktails and food preparation.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/almond.png",
       },
       {
@@ -145,7 +145,7 @@ async function main() {
         name: "Amaretto",
         description:
           "Amaretto is a sweet, almond-flavoured, Italian liqueur associated with Saronno, Italy.",
-        isAlcohol: true,
+        type: "ALCOHOLIC",
         photo: "https://cocktails.solvro.pl/images/ingredients/amaretto.png",
       },
       {
@@ -153,7 +153,7 @@ async function main() {
         name: "Angelica Root",
         description:
           "The root of the Angelica plant, used as a flavoring agent in various alcoholic beverages.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/angelica-root.png",
       },
@@ -162,7 +162,7 @@ async function main() {
         name: "Angostura Bitters",
         description:
           "A concentrated bitters made of water, ethanol, gentian, herbs and spices by House of Angostura in Trinidad and Tobago.",
-        isAlcohol: false,
+        type: "NON_ALCOHOLIC",
         photo:
           "https://cocktails.solvro.pl/images/ingredients/angostura-bitters.png",
       },
@@ -173,8 +173,8 @@ async function main() {
     data: {
       id: 1,
       name: "Mojito",
-      category: "Cocktail",
-      instructions:
+      category: "COCKTAIL",
+      instruction:
         "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.",
     },
   });
@@ -183,8 +183,8 @@ async function main() {
     data: {
       id: 2,
       name: "Old Fashioned",
-      category: "Cocktail",
-      instructions:
+      category: "COCKTAIL",
+      instruction:
         "Place sugar cube in old fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolved.\r\nFill the glass with ice cubes and add whiskey.\r\n\r\nGarnish with orange twist, and a cocktail cherry.",
     },
   });
@@ -193,8 +193,8 @@ async function main() {
     data: {
       id: 3,
       name: "Long Island Tea",
-      category: "Ordinary Drink",
-      instructions:
+      category: "ORDINARY_DRINK",
+      instruction:
         "Combine all ingredients (except cola) and pour over ice in a highball glass. Add the splash of cola for color. Decorate with a slice of lemon and serve.",
     },
   });
@@ -203,8 +203,8 @@ async function main() {
     data: {
       id: 4,
       name: "Negroni",
-      category: "Ordinary Drink",
-      instructions: "Stir into glass over ice, garnish and serve.",
+      category: "ORDINARY_DRINK",
+      instruction: "Stir into glass over ice, garnish and serve.",
     },
   });
 
@@ -212,8 +212,8 @@ async function main() {
     data: {
       id: 5,
       name: "Whiskey Sour",
-      category: "Ordinary Drink",
-      instructions:
+      category: "ORDINARY_DRINK",
+      instruction:
         "Shake with ice. Strain into chilled glass, garnish and serve. If served 'On the rocks', strain ingredients into old-fashioned glass filled with ice.",
     },
   });
@@ -222,8 +222,8 @@ async function main() {
     data: {
       id: 6,
       name: "Dry Martini",
-      category: "Cocktail",
-      instructions:
+      category: "COCKTAIL",
+      instruction:
         "Straight: Pour all ingredients into mixing glass with ice cubes. Stir well. Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive.",
     },
   });
@@ -232,8 +232,8 @@ async function main() {
     data: {
       id: 7,
       name: "Daiquiri",
-      category: "Ordinary Drink",
-      instructions:
+      category: "ORDINARY_DRINK",
+      instruction:
         "Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass.",
     },
   });
@@ -242,8 +242,8 @@ async function main() {
     data: {
       id: 8,
       name: "Margarita",
-      category: "Ordinary Drink",
-      instructions:
+      category: "ORDINARY_DRINK",
+      instruction:
         "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.",
     },
   });
@@ -252,8 +252,8 @@ async function main() {
     data: {
       id: 9,
       name: "Manhattan",
-      category: "Cocktail",
-      instructions:
+      category: "COCKTAIL",
+      instruction:
         "Stirred over ice, strained into a chilled glass, garnished, and served up.",
     },
   });
@@ -262,8 +262,8 @@ async function main() {
     data: {
       id: 10,
       name: "Moscow Mule",
-      category: "Punch / Party Drink",
-      instructions:
+      category: "PUNCH_PARTY_DRINK",
+      instruction:
         "Combine vodka and ginger beer in a highball glass filled with ice. Add lime juice. Stir gently. Garnish.",
     },
   });

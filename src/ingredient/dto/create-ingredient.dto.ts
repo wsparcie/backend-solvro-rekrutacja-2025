@@ -1,23 +1,18 @@
-import {
-  IsBoolean,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  IsUrl,
-} from "class-validator";
+import { IngredientType } from "@prisma/client";
+import { IsEnum, IsNotEmpty, IsString, IsUrl } from "class-validator";
 
 export class CreateIngredientDto {
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  description?: string;
+  description: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isAlcohol: boolean;
+  @IsEnum(IngredientType)
+  type: IngredientType;
 
   @IsNotEmpty()
   @IsUrl()

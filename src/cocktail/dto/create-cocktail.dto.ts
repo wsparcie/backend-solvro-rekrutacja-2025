@@ -1,4 +1,5 @@
-import { IsArray, IsNotEmpty, IsString } from "class-validator";
+import { CocktailCategory } from "@prisma/client";
+import { IsArray, IsEnum, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateCocktailDto {
   @IsNotEmpty()
@@ -6,12 +7,12 @@ export class CreateCocktailDto {
   name: string;
 
   @IsNotEmpty()
-  @IsString()
-  category: string;
+  @IsEnum(CocktailCategory)
+  category: CocktailCategory;
 
   @IsNotEmpty()
   @IsString()
-  instructions: string;
+  instruction: string;
 
   @IsArray()
   ingredients: Array<{

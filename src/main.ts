@@ -6,17 +6,54 @@ import { AppModule } from "./app.module";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder()
-    .setTitle("Koktajlowe API")
-    .setDescription("API do zarządzania koktajlami")
-    .setVersion("1.0")
-    .addTag("koktajlownik")
+  app.enableCors({
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cache-Control",
+      "Accept",
+      "Accept-Encoding",
+      "Accept-Language",
+      "Connection",
+    ],
+    exposedHeaders: ["Cache-Control", "Connection", "Content-Type"],
+    origin: (
+      origin: string | undefined,
+      callback: (error: Error | null, allow?: boolean) => void,
+    ) => {
+      if (origin == null) {
+        callback(null, true);
+        return;
+      }
 
+      const localhostPattern = /^https?:\/\/localhost:(50\d{2}|5[1-5]\d{2})$/;
+      const allowedDomains = [
+        "http://cocktails-dev.local",
+        "http://cocktails-prod.local",
+      ];
+
+      if (localhostPattern.test(origin) || allowedDomains.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"), false);
+    },
+    preflightContinue: false,
+    credentials: true,
+  });
+
+  const config = new DocumentBuilder()
+    .setTitle("Cocktails API")
+    .setDescription("API for managing cocktails and their ingredients")
+    .setVersion("1.0")
+    .addTag("API")
     .build();
 
   const documentFactory = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, documentFactory);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 5000);
 }
 bootstrap();
