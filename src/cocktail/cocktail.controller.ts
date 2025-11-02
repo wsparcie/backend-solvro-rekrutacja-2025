@@ -28,7 +28,7 @@ export class CocktailController {
   constructor(private readonly cocktailService: CocktailService) {}
 
   @Post()
-  @ApiOperation({ description: "Create a new cocktail" })
+  @ApiOperation({ summary: "Create a new cocktail" })
   @ApiCreatedResponse({
     description: "Cocktail created successfully",
     type: CreateCocktailDto,
@@ -40,10 +40,10 @@ export class CocktailController {
 
   @Get()
   @ApiOperation({
-    description: "Get all cocktails with optional filtering and sorting",
+    summary: "Get all cocktails with optional filtering and sorting",
   })
   @ApiOkResponse({
-    description: "List of cocktails",
+    description: "List of cocktails retrieved successfully",
     type: [CreateCocktailDto],
   })
   async findAll(@Query() filterDto: FilterCocktailDto) {
@@ -51,16 +51,22 @@ export class CocktailController {
   }
 
   @Get(":id")
-  @ApiOperation({ description: "Get a cocktail by ID" })
-  @ApiOkResponse({ description: "Cocktail found", type: CreateCocktailDto })
+  @ApiOperation({ summary: "Get a cocktail by ID" })
+  @ApiOkResponse({
+    description: "Cocktail found",
+    type: CreateCocktailDto,
+  })
   @ApiNotFoundResponse({ description: "Cocktail not found" })
   async findOne(@Param("id") id: string) {
     return this.cocktailService.findOne(+id);
   }
 
   @Patch(":id")
-  @ApiOperation({ description: "Update a cocktail by ID" })
-  @ApiOkResponse({ description: "Cocktail updated", type: UpdateCocktailDto })
+  @ApiOperation({ summary: "Update a cocktail by ID" })
+  @ApiOkResponse({
+    description: "Cocktail updated successfully",
+    type: UpdateCocktailDto,
+  })
   @ApiNotFoundResponse({ description: "Cocktail not found" })
   @ApiBadRequestResponse({ description: "Invalid input" })
   async update(
@@ -71,8 +77,8 @@ export class CocktailController {
   }
 
   @Delete(":id")
-  @ApiOperation({ description: "Delete a cocktail by ID" })
-  @ApiOkResponse({ description: "Cocktail deleted" })
+  @ApiOperation({ summary: "Delete a cocktail by ID" })
+  @ApiOkResponse({ description: "Cocktail deleted successfully" })
   @ApiNotFoundResponse({ description: "Cocktail not found" })
   async remove(@Param("id") id: string) {
     return this.cocktailService.remove(+id);
