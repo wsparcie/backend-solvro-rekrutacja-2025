@@ -1,157 +1,233 @@
-# Koktajlownik
+# 🍹 Koktajlownik API
 
-**Your cocktail recipe companion**
+<p align="center">
+    <strong>Your ultimate cocktail recipe management API</strong>
+</p>
 
 ## Tech Stack
 
 <div align="center">
 
-[![NestJS](https://img.shields.io/badge/NestJS-11.x-E0234E?logo=nestjs)](https://nestjs.com/) [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js)](https://nodejs.org/) [![Prisma](https://img.shields.io/badge/Prisma-6.x-2D3748?logo=prisma)](https://www.prisma.io/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.x-4169E1?logo=postgresql)](https://www.postgresql.org/)
+[![NestJS](https://img.shields.io/badge/NestJS-11.x-E0234E?logo=nestjs)](https://nestjs.com/) [![Prisma](https://img.shields.io/badge/Prisma-6.18-2D3748?logo=prisma)](https://www.prisma.io/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.x-4169E1?logo=postgresql)](https://www.postgresql.org/) [![Node.js](https://img.shields.io/badge/Node.js-22.x-339933?logo=node.js)](https://nodejs.org/)
 
-[![Jest](https://img.shields.io/badge/Jest-30.x-C21325?logo=jest)](https://jestjs.io/) [![Swagger](https://img.shields.io/badge/Swagger-11.x-85EA2D?logo=swagger)](https://swagger.io/) [![Status](https://img.shields.io/badge/Status-Beta-orange)]() [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?logo=swagger)](https://swagger.io/) [![Status](https://img.shields.io/badge/Status-Beta-orange)]() [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 </div>
 
 ## About the Project
 
-**Koktajlownik** is a RESTful API for managing cocktail recipes and ingredients. Built with NestJS and Prisma, it provides a robust backend for cocktail enthusiasts to discover, create, and manage their favorite drink recipes.
+**Koktajlownik** is a RESTful API for managing cocktail recipes and ingredients. Built with NestJS and Prisma, it provides a robust backend for cocktail enthusiasts, bartenders, and recipe management applications.
 
 ### Key Features
 
-- **Cocktail Management** - Create, read, update, and delete cocktail recipes
-- **Ingredient Database** - Comprehensive ingredient library with types and descriptions
-- **Smart Filtering** - Filter cocktails by category, name, or ingredients
-- **Relationship Tracking** - Link cocktails with ingredients and quantities
-- **Type Safety** - Full TypeScript support with Prisma ORM
-- **API Documentation** - Interactive Swagger/OpenAPI documentation
+- **Cocktail Management** - Full CRUD operations for cocktail recipes
+- **Ingredient Database** - Comprehensive ingredient management with types (alcoholic/non-alcoholic)
+- **Advanced Filtering** - Search and filter cocktails by category, name, and ingredients
+- **Database Statistics** - Real-time statistics about your cocktail collection
+- **Comprehensive Testing** - Unit and E2E tests with isolated test database
+
+## API Documentation
+
+Once the server is running, access the interactive Swagger documentation at:
+
+```
+http://localhost:5000/api
+```
+
+![Swagger API Documentation](swagger.png)
+
+The API provides endpoints for:
+
+- **Cocktails** - `/cocktails` - CRUD operations, filtering, sorting
+- **Ingredients** - `/ingredients` - CRUD operations, filtering, sorting
+- **Database** - `/database` - Statistics and health checks
 
 ## Database Schema
 
 ```mermaid
 erDiagram
     Cocktail ||--o{ CocktailIngredient : "contains"
-    Ingredient ||--o{ CocktailIngredient : "used in"
+    Ingredient ||--o{ CocktailIngredient : "used_in"
 
     Cocktail {
-        int id PK "Primary Key"
-        string name "Cocktail Name"
-        string category "Category"
-        string instruction "Instructions"
-        datetime createdAt "Created"
-        datetime updatedAt "Updated"
+        int id PK "Auto-increment ID"
+        string name "Cocktail name"
+        enum category "ORDINARY_DRINK, COCKTAIL, etc."
+        string instruction "Preparation steps"
+        datetime createdAt "Created timestamp"
+        datetime updatedAt "Updated timestamp"
     }
 
     Ingredient {
-        int id PK "Primary Key"
-        string name UK "Unique Name"
-        string description "Description"
-        string type "Type"
+        int id PK "Auto-increment ID"
+        string name UK "Unique ingredient name"
+        string description "Ingredient description"
+        enum type "ALCOHOLIC or NON_ALCOHOLIC"
         string photo "Photo URL"
-        datetime createdAt "Created"
-        datetime updatedAt "Updated"
+        datetime createdAt "Created timestamp"
+        datetime updatedAt "Updated timestamp"
     }
 
     CocktailIngredient {
-        int cocktailId FK "Cocktail Reference"
-        int ingredientId FK "Ingredient Reference"
-        string quantity "Quantity"
+        int cocktailId FK "Cocktail reference"
+        int ingredientId FK "Ingredient reference"
+        string quantity "Amount needed"
     }
 ```
-
-## API Endpoints
-
-### Cocktails
-
-- `GET /api/cocktail` - List all cocktails with optional filters
-- `GET /api/cocktail/:id` - Get cocktail by ID
-- `POST /api/cocktail` - Create new cocktail
-- `PATCH /api/cocktail/:id` - Update cocktail
-- `DELETE /api/cocktail/:id` - Delete cocktail
-
-### Ingredients
-
-- `GET /api/ingredient` - List all ingredients with optional filters
-- `GET /api/ingredient/:id` - Get ingredient by ID
-- `POST /api/ingredient` - Create new ingredient
-- `PATCH /api/ingredient/:id` - Update ingredient
-- `DELETE /api/ingredient/:id` - Delete ingredient
-
-### Database
-
-- `GET /api/database/stats` - Get database statistics
 
 ## Getting Started
 
 ### Installation
 
-1. Install dependencies:
+1. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-2. Set up environment variables:
+2. **Setup environment variables**
 
-```bash
-cp .env.example .env
-# Edit .env with your database credentials
+Create a `.env` file in the root directory:
+
+```env
+# Database
 DATABASE_URL="postgresql://user:password@localhost:5432/koktajlownik"
 DATABASE_URL_TEST="postgresql://user:password@localhost:5432/koktajlownik_test"
+
+# Server
+PORT=5000
+NODE_ENV=development
 ```
 
-3. Run database migrations:
+3. **Setup the database**
 
 ```bash
+# Run migrations
 npx prisma migrate dev
-```
 
-4. Seed the database (optional):
-
-```bash
+# Seed the database
 npx prisma db seed
 ```
 
-### Running the Application
+4. **Start the development server**
 
 ```bash
-# Development mode
 npm run start:dev
-
-# Production mode
-npm run build
-npm run start:prod
 ```
 
 The API will be available at `http://localhost:5000`
 
-Swagger documentation: `http://localhost:5000/api`
+---
+
+## API Endpoints
+
+### Cocktails
+
+| Method   | Endpoint         | Description                      |
+| -------- | ---------------- | -------------------------------- |
+| `GET`    | `/cocktails`     | Get all cocktails with filtering |
+| `GET`    | `/cocktails/:id` | Get cocktail by ID               |
+| `POST`   | `/cocktails`     | Create new cocktail              |
+| `PATCH`  | `/cocktails/:id` | Update cocktail                  |
+| `DELETE` | `/cocktails/:id` | Delete cocktail                  |
+
+**Query Parameters:**
+
+- `category` - Filter by category
+- `name` - Filter by name (partial match)
+- `sortBy` - Sort by field (name, category, createdAt)
+- `sortOrder` - Sort direction (asc, desc)
+
+### Ingredients
+
+| Method   | Endpoint           | Description                        |
+| -------- | ------------------ | ---------------------------------- |
+| `GET`    | `/ingredients`     | Get all ingredients with filtering |
+| `GET`    | `/ingredients/:id` | Get ingredient by ID               |
+| `POST`   | `/ingredients`     | Create new ingredient              |
+| `PATCH`  | `/ingredients/:id` | Update ingredient                  |
+| `DELETE` | `/ingredients/:id` | Delete ingredient                  |
+
+**Query Parameters:**
+
+- `type` - Filter by type
+- `name` - Filter by name (partial match)
+- `sortBy` - Sort by field (name, type, createdAt)
+- `sortOrder` - Sort direction (asc, desc)
+
+## Project Structure
+
+```
+koktajlownik/
+├── prisma/
+│   ├── schema.prisma          # Database schema
+│   ├── seed.ts                # Production seed data
+│   └── migrations/            # Database migrations
+├── src/
+│   ├── main.ts                # Application entry point
+│   ├── app.module.ts          # Root module
+│   ├── cocktail/              # Cocktail module
+│   │   ├── cocktail.controller.ts
+│   │   ├── cocktail.service.ts
+│   │   └── dto/
+│   ├── ingredient/            # Ingredient module
+│   │   ├── ingredient.controller.ts
+│   │   ├── ingredient.service.ts
+│   │   └── dto/
+│   └── database/              # Database module
+│       ├── database.controller.ts
+│       └── database.service.ts
+├── test/                      # Test files
+├── package.json
+└── tsconfig.json
+```
+
+## Environment Variables
+
+| Variable            | Description                           | Required                  |
+| ------------------- | ------------------------------------- | ------------------------- |
+| `DATABASE_URL`      | Production database connection string | Yes                       |
+| `DATABASE_URL_TEST` | Test database connection string       | Yes (for testing)         |
+| `PORT`              | Server port                           | No (default: 5000)        |
+| `NODE_ENV`          | Environment mode                      | No (default: development) |
+
+---
+
+## Available Scripts
+
+### Development
+
+```bash
+npm run start:dev          # Start development server with watch mode
+npm run start:debug        # Start with debugging enabled
+npm run build              # Build for production
+npm run start:prod         # Start production server
+```
+
+### Database
+
+```bash
+npx prisma generate        # Generate Prisma Client
+npx prisma migrate dev     # Create and apply migrations
+npx prisma db seed         # Seed the database
+npx prisma studio          # Open Prisma Studio GUI
+```
 
 ### Testing
 
 ```bash
-# Unit tests
-npm run test
-
-# E2E tests
-npm run test:e2e
-
-# E2E tests in watch mode
-npm run test:e2e:watch
-
-# Test coverage
-npm run test:cov
+npm run test               # Run unit tests
+npm run test:watch         # Run tests in watch mode
+npm run test:cov           # Run tests with coverage
+npm run test:e2e           # Run E2E tests
+npm run test:e2e:watch     # Run E2E tests in watch mode
 ```
 
-## Scripts
+### Code
 
-- `npm run start:dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-- `npm run typecheck` - Run TypeScript type checking
-- `npm test` - Run unit tests
-- `npm run test:e2e` - Run E2E tests
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+npm run format             # Format code with Prettier
+npm run format:check       # Check code formatting
+npm run typecheck          # TypeScript type checking
+npm run lint               # Run ESLint
+```

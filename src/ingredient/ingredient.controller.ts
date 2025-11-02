@@ -28,7 +28,7 @@ export class IngredientController {
   constructor(private readonly ingredientService: IngredientService) {}
 
   @Post()
-  @ApiOperation({ description: "Create a new ingredient" })
+  @ApiOperation({ summary: "Create a new ingredient" })
   @ApiCreatedResponse({
     description: "Ingredient created successfully",
     type: CreateIngredientDto,
@@ -40,10 +40,10 @@ export class IngredientController {
 
   @Get()
   @ApiOperation({
-    description: "Get all ingredients with optional filtering and sorting",
+    summary: "Get all ingredients with optional filtering and sorting",
   })
   @ApiOkResponse({
-    description: "List of ingredients",
+    description: "List of ingredients retrieved successfully",
     type: [CreateIngredientDto],
   })
   async findAll(@Query() filterDto: FilterIngredientDto) {
@@ -51,17 +51,20 @@ export class IngredientController {
   }
 
   @Get(":id")
-  @ApiOperation({ description: "Get ingredient by ID" })
-  @ApiOkResponse({ description: "Ingredient found", type: CreateIngredientDto })
+  @ApiOperation({ summary: "Get an ingredient by ID" })
+  @ApiOkResponse({
+    description: "Ingredient found",
+    type: CreateIngredientDto,
+  })
   @ApiNotFoundResponse({ description: "Ingredient not found" })
   async findOne(@Param("id") id: string) {
     return this.ingredientService.findOne(+id);
   }
 
   @Patch(":id")
-  @ApiOperation({ description: "Update ingredient by ID" })
+  @ApiOperation({ summary: "Update an ingredient by ID" })
   @ApiOkResponse({
-    description: "Ingredient updated",
+    description: "Ingredient updated successfully",
     type: UpdateIngredientDto,
   })
   @ApiBadRequestResponse({ description: "Invalid input" })
@@ -74,8 +77,8 @@ export class IngredientController {
   }
 
   @Delete(":id")
-  @ApiOperation({ description: "Delete ingredient by ID" })
-  @ApiOkResponse({ description: "Ingredient deleted" })
+  @ApiOperation({ summary: "Delete an ingredient by ID" })
+  @ApiOkResponse({ description: "Ingredient deleted successfully" })
   @ApiNotFoundResponse({ description: "Ingredient not found" })
   async remove(@Param("id") id: string) {
     return this.ingredientService.remove(+id);
