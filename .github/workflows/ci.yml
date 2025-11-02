@@ -8,6 +8,26 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: cocktails_user
+          POSTGRES_PASSWORD: cocktails_password
+          POSTGRES_DB: cocktails
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U cocktails_user -d cocktails"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      DATABASE_URL: postgresql://cocktails_user:cocktails_password@localhost:5432/cocktails
+      DATABASE_URL_TEST: postgresql://cocktails_user:cocktails_password@localhost:5432/cocktails_test
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,6 +57,22 @@ jobs:
 
       - name: Check types
         run: npm run typecheck
+        if: always()
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+        if: always()
+
+      - name: Apply Prisma schema to database
+        run: npx prisma migrate deploy
+        if: always()
+
+      - name: Create test database
+        run: PGPASSWORD=cocktails_password createdb -h localhost -U cocktails_user cocktails_test
+        if: always()
+
+      - name: Apply Prisma schema to test database
+        run: DATABASE_URL=$DATABASE_URL_TEST npx prisma migrate deploy
         if: always()
 
       - name: Run tests

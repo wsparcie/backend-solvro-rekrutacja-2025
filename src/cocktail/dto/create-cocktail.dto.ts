@@ -1,5 +1,22 @@
 import { CocktailCategory } from "@prisma/client";
-import { IsArray, IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import {
+  IsArray,
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsString,
+  ValidateNested,
+} from "class-validator";
+
+class CocktailIngredientDto {
+  @IsInt()
+  ingredientId: number;
+
+  @IsNotEmpty()
+  @IsString()
+  quantity: string;
+}
 
 export class CreateCocktailDto {
   @IsNotEmpty()
@@ -15,8 +32,7 @@ export class CreateCocktailDto {
   instruction: string;
 
   @IsArray()
-  ingredients: Array<{
-    ingredientId: number;
-    quantity: string;
-  }>;
+  @ValidateNested({ each: true })
+  @Type(() => CocktailIngredientDto)
+  ingredients: CocktailIngredientDto[];
 }

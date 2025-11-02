@@ -1,98 +1,157 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Koktajlownik
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Your cocktail recipe companion**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tech Stack
 
-## Description
+<div align="center">
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[![NestJS](https://img.shields.io/badge/NestJS-11.x-E0234E?logo=nestjs)](https://nestjs.com/) [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js)](https://nodejs.org/) [![Prisma](https://img.shields.io/badge/Prisma-6.x-2D3748?logo=prisma)](https://www.prisma.io/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.x-4169E1?logo=postgresql)](https://www.postgresql.org/)
 
-## Project setup
+[![Jest](https://img.shields.io/badge/Jest-30.x-C21325?logo=jest)](https://jestjs.io/) [![Swagger](https://img.shields.io/badge/Swagger-11.x-85EA2D?logo=swagger)](https://swagger.io/) [![Status](https://img.shields.io/badge/Status-Beta-orange)]() [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-```bash
-$ npm install
+</div>
+
+## About the Project
+
+**Koktajlownik** is a RESTful API for managing cocktail recipes and ingredients. Built with NestJS and Prisma, it provides a robust backend for cocktail enthusiasts to discover, create, and manage their favorite drink recipes.
+
+### Key Features
+
+- **Cocktail Management** - Create, read, update, and delete cocktail recipes
+- **Ingredient Database** - Comprehensive ingredient library with types and descriptions
+- **Smart Filtering** - Filter cocktails by category, name, or ingredients
+- **Relationship Tracking** - Link cocktails with ingredients and quantities
+- **Type Safety** - Full TypeScript support with Prisma ORM
+- **API Documentation** - Interactive Swagger/OpenAPI documentation
+
+## Database Schema
+
+```mermaid
+erDiagram
+    Cocktail ||--o{ CocktailIngredient : "contains"
+    Ingredient ||--o{ CocktailIngredient : "used in"
+
+    Cocktail {
+        int id PK "Primary Key"
+        string name "Cocktail Name"
+        string category "Category"
+        string instruction "Instructions"
+        datetime createdAt "Created"
+        datetime updatedAt "Updated"
+    }
+
+    Ingredient {
+        int id PK "Primary Key"
+        string name UK "Unique Name"
+        string description "Description"
+        string type "Type"
+        string photo "Photo URL"
+        datetime createdAt "Created"
+        datetime updatedAt "Updated"
+    }
+
+    CocktailIngredient {
+        int cocktailId FK "Cocktail Reference"
+        int ingredientId FK "Ingredient Reference"
+        string quantity "Quantity"
+    }
 ```
 
-## Compile and run the project
+## API Endpoints
+
+### Cocktails
+
+- `GET /api/cocktail` - List all cocktails with optional filters
+- `GET /api/cocktail/:id` - Get cocktail by ID
+- `POST /api/cocktail` - Create new cocktail
+- `PATCH /api/cocktail/:id` - Update cocktail
+- `DELETE /api/cocktail/:id` - Delete cocktail
+
+### Ingredients
+
+- `GET /api/ingredient` - List all ingredients with optional filters
+- `GET /api/ingredient/:id` - Get ingredient by ID
+- `POST /api/ingredient` - Create new ingredient
+- `PATCH /api/ingredient/:id` - Update ingredient
+- `DELETE /api/ingredient/:id` - Delete ingredient
+
+### Database
+
+- `GET /api/database/stats` - Get database statistics
+
+## Getting Started
+
+### Installation
+
+1. Install dependencies:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+2. Set up environment variables:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cp .env.example .env
+# Edit .env with your database credentials
+DATABASE_URL="postgresql://user:password@localhost:5432/koktajlownik"
+DATABASE_URL_TEST="postgresql://user:password@localhost:5432/koktajlownik_test"
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+3. Run database migrations:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npx prisma migrate dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+4. Seed the database (optional):
 
-## Resources
+```bash
+npx prisma db seed
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### Running the Application
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+# Development mode
+npm run start:dev
 
-## Support
+# Production mode
+npm run build
+npm run start:prod
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The API will be available at `http://localhost:5000`
 
-## Stay in touch
+Swagger documentation: `http://localhost:5000/api`
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Testing
+
+```bash
+# Unit tests
+npm run test
+
+# E2E tests
+npm run test:e2e
+
+# E2E tests in watch mode
+npm run test:e2e:watch
+
+# Test coverage
+npm run test:cov
+```
+
+## Scripts
+
+- `npm run start:dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+- `npm run typecheck` - Run TypeScript type checking
+- `npm test` - Run unit tests
+- `npm run test:e2e` - Run E2E tests
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
