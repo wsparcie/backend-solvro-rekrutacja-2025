@@ -4,7 +4,8 @@ import {
   setupTestDatabase,
 } from "./test-database-setup";
 
-export async function globalSetup() {
+// eslint-disable-next-line import/no-default-export
+export default async function globalSetup() {
   await setupTestDatabase();
   await clearDatabase();
   await seedTestData();
