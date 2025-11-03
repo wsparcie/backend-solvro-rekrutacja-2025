@@ -33,27 +33,27 @@ enum IngredientType {
 
 model Cocktail {
   id          Int                  @id @default(autoincrement())
-  name        String
+  name        String               @db.VarChar(255)
   category    CocktailCategory
-  instruction String
+  instruction String               @db.Text
   ingredients CocktailIngredient[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
 
   @@index([name])
 }
 
 model Ingredient {
   id          Int                  @id @default(autoincrement())
-  name        String               @unique
-  description String
+  name        String               @unique @db.VarChar(100)
+  description String               @db.Text
   type        IngredientType
-  photo       String
+  photo       String               @db.VarChar(500)
   cocktails   CocktailIngredient[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
 
   @@index([name])
 }
@@ -61,10 +61,12 @@ model Ingredient {
 model CocktailIngredient {
   cocktailId   Int
   ingredientId Int
-  quantity     String
+  quantity     String @db.VarChar(50)
 
-  cocktail   Cocktail   @relation(fields: [cocktailId], references: [id], onDelete: Cascade)
-  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  cocktail   Cocktail   @relation(fields: [cocktailId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([cocktailId, ingredientId])
+  @@index([cocktailId])
+  @@index([ingredientId])
 }
