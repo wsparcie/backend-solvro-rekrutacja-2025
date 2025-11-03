@@ -44,7 +44,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "White rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -53,7 +53,8 @@ describe("CocktailController (e2e)", () => {
           name: "Lime Juice",
           description: "Fresh lime juice",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/lime.jpg",
+          photo:
+            "https://www.thecocktaildb.com/images/ingredients/lime%20juice.png",
         },
       });
 
@@ -121,7 +122,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "White rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -192,7 +193,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "White rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -246,7 +247,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "White rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -255,7 +256,7 @@ describe("CocktailController (e2e)", () => {
           name: "Sugar",
           description: "White sugar",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/sugar.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/sugar.png",
         },
       });
 
@@ -326,7 +327,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "White rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -376,7 +377,7 @@ describe("CocktailController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -385,7 +386,8 @@ describe("CocktailController (e2e)", () => {
           name: "Orange Juice",
           description: "Fresh juice",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/juice.jpg",
+          photo:
+            "https://www.thecocktaildb.com/images/ingredients/orange%20juice.png",
         },
       });
 
@@ -394,7 +396,7 @@ describe("CocktailController (e2e)", () => {
           name: "Rum",
           description: "Dark rum",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 

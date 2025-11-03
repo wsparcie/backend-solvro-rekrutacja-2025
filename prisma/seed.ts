@@ -14,7 +14,7 @@ async function main() {
         description:
           "Vodka is a distilled beverage composed primarily of water and ethanol, sometimes with traces of impurities and flavorings. Traditionally, vodka is made by the distillation of fermented cereal grains or potatoes, though some modern brands use other substances, such as fruits or sugar.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/vodka.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
       },
       {
         id: 2,
@@ -22,7 +22,7 @@ async function main() {
         description:
           "Gin is a distilled alcoholic drink that derives its predominant flavour from juniper berries (Juniperus communis). Gin is one of the broadest categories of spirits, all of various origins, styles, and flavour profiles, that revolve around juniper as a common ingredient.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/gin.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/gin.png",
       },
       {
         id: 3,
@@ -30,7 +30,7 @@ async function main() {
         description:
           "Rum is a distilled alcoholic beverage made from sugarcane byproducts, such as molasses, or directly from sugarcane juice, by a process of fermentation and distillation. The distillate, a clear liquid, is then usually aged in oak barrels.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/rum.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
       },
       {
         id: 4,
@@ -38,7 +38,7 @@ async function main() {
         description:
           "Tequila is a regionally specific distilled beverage and type of alcoholic drink made from the blue agave plant, primarily in the area surrounding the city of Tequila.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/tequila.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/tequila.png",
       },
       {
         id: 5,
@@ -46,7 +46,7 @@ async function main() {
         description:
           "Scotch whisky, often simply called Scotch, is malt whisky or grain whisky made in Scotland. Scotch whisky must be made in a manner specified by law.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/scotch.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/scotch.png",
       },
       {
         id: 6,
@@ -55,7 +55,7 @@ async function main() {
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
         type: "ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/absolut-kurant.png",
+          "https://www.thecocktaildb.com/images/ingredients/absolut%20kurant.png",
       },
       {
         id: 7,
@@ -64,7 +64,7 @@ async function main() {
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
         type: "ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/absolut-peppar.png",
+          "https://www.thecocktaildb.com/images/ingredients/absolut%20peppar.png",
       },
       {
         id: 8,
@@ -73,7 +73,7 @@ async function main() {
           "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state.",
         type: "ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/absolut-vodka.png",
+          "https://www.thecocktaildb.com/images/ingredients/absolut%20vodka.png",
       },
       {
         id: 9,
@@ -81,7 +81,7 @@ async function main() {
         description:
           "Advocaat or advocatenborrel is a traditional Dutch alcoholic beverage made from eggs, sugar and brandy.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/advocaat.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/advocaat.png",
       },
       {
         id: 10,
@@ -89,7 +89,8 @@ async function main() {
         description:
           'The origin of the word "rum" is generally unclear. In an 1824 essay about the word\'s origin, Samuel Morewood, a British etymologist, suggested it might be from the British slang term for "the best", as in "having a rum time."',
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/aejo-rum.png",
+        photo:
+          "https://www.thecocktaildb.com/images/ingredients/aejo%20rum.png",
       },
       {
         id: 11,
@@ -97,7 +98,8 @@ async function main() {
         description:
           "This cinnamon flavoured liqueur has proved immensely popular since its introduction. Normally drunk as a shooter.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/aftershock.png",
+        photo:
+          "https://www.thecocktaildb.com/images/ingredients/aftershock.png",
       },
       {
         id: 12,
@@ -105,7 +107,8 @@ async function main() {
         description:
           "Agave nectar (more accurately called agave syrup) is a sweetener commercially produced from several species of agave, including Agave tequilana (blue agave) and Agave salmiana.",
         type: "NON_ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/agave-syrup.png",
+        photo:
+          "https://www.thecocktaildb.com/images/ingredients/agave%20syrup.png",
       },
       {
         id: 13,
@@ -113,7 +116,7 @@ async function main() {
         description:
           "Ale is a type of beer brewed using a warm fermentation method, resulting in a sweet, full-bodied and fruity taste.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/ale.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/ale.png",
       },
       {
         id: 14,
@@ -121,7 +124,7 @@ async function main() {
         description:
           "A spice made from dried berries of the Pimenta dioica plant.",
         type: "NON_ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/allspice.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/allspice.png",
       },
       {
         id: 16,
@@ -130,7 +133,7 @@ async function main() {
           "A flavoring extract made from almonds or artificial almond flavoring.",
         type: "NON_ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/almond-flavoring.png",
+          "https://www.thecocktaildb.com/images/ingredients/almond%20flavoring.png",
       },
       {
         id: 17,
@@ -138,7 +141,7 @@ async function main() {
         description:
           "The edible seed of an almond tree, commonly used in cocktails and food preparation.",
         type: "NON_ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/almond.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/almond.png",
       },
       {
         id: 18,
@@ -146,7 +149,7 @@ async function main() {
         description:
           "Amaretto is a sweet, almond-flavoured, Italian liqueur associated with Saronno, Italy.",
         type: "ALCOHOLIC",
-        photo: "https://cocktails.solvro.pl/images/ingredients/amaretto.png",
+        photo: "https://www.thecocktaildb.com/images/ingredients/amaretto.png",
       },
       {
         id: 19,
@@ -155,7 +158,7 @@ async function main() {
           "The root of the Angelica plant, used as a flavoring agent in various alcoholic beverages.",
         type: "NON_ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/angelica-root.png",
+          "https://www.thecocktaildb.com/images/ingredients/angelica%20root.png",
       },
       {
         id: 20,
@@ -164,7 +167,7 @@ async function main() {
           "A concentrated bitters made of water, ethanol, gentian, herbs and spices by House of Angostura in Trinidad and Tobago.",
         type: "NON_ALCOHOLIC",
         photo:
-          "https://cocktails.solvro.pl/images/ingredients/angostura-bitters.png",
+          "https://www.thecocktaildb.com/images/ingredients/angostura%20bitters.png",
       },
     ],
   });

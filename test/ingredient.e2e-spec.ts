@@ -43,7 +43,7 @@ describe("IngredientController (e2e)", () => {
         name: "Vodka",
         description: "Clear spirit",
         type: "ALCOHOLIC",
-        photo: "https://example.com/vodka.jpg",
+        photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
       };
 
       const response = await request(app.getHttpServer())
@@ -66,7 +66,7 @@ describe("IngredientController (e2e)", () => {
       const invalidIngredient = {
         description: "Clear spirit",
         type: "ALCOHOLIC",
-        photo: "https://example.com/vodka.jpg",
+        photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
       };
 
       await request(app.getHttpServer())
@@ -83,7 +83,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -92,7 +92,8 @@ describe("IngredientController (e2e)", () => {
           name: "Orange Juice",
           description: "Fresh juice",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/oj.jpg",
+          photo:
+            "https://www.thecocktaildb.com/images/ingredients/orange%20juice.png",
         },
       });
 
@@ -129,7 +130,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -155,7 +156,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -206,7 +207,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -248,7 +249,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -272,7 +273,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -312,7 +313,7 @@ describe("IngredientController (e2e)", () => {
           name: "Vodka",
           description: "Clear spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/vodka.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/vodka.png",
         },
       });
 
@@ -321,7 +322,7 @@ describe("IngredientController (e2e)", () => {
           name: "Rum",
           description: "Dark spirit",
           type: "ALCOHOLIC",
-          photo: "https://example.com/rum.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/rum.png",
         },
       });
 
@@ -330,7 +331,8 @@ describe("IngredientController (e2e)", () => {
           name: "Orange Juice",
           description: "Fresh juice",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/juice.jpg",
+          photo:
+            "https://www.thecocktaildb.com/images/ingredients/orange%20juice.png",
         },
       });
 
@@ -339,7 +341,7 @@ describe("IngredientController (e2e)", () => {
           name: "Cola",
           description: "Soft drink",
           type: "NON_ALCOHOLIC",
-          photo: "https://example.com/cola.jpg",
+          photo: "https://www.thecocktaildb.com/images/ingredients/cola.png",
         },
       });
     });
