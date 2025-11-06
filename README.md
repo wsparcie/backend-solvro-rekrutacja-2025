@@ -75,50 +75,6 @@ erDiagram
     }
 ```
 
-## Getting Started
-
-### Installation
-
-1. **Install dependencies**
-
-```bash
-npm install
-```
-
-2. **Setup environment variables**
-
-Create a `.env` file in the root directory:
-
-```env
-# Database
-DATABASE_URL="postgresql://user:password@localhost:5432/koktajlownik"
-DATABASE_URL_TEST="postgresql://user:password@localhost:5432/koktajlownik_test"
-
-# Server
-PORT=5000
-NODE_ENV=development
-```
-
-3. **Setup the database**
-
-```bash
-# Run migrations
-npx prisma migrate dev
-
-# Seed the database
-npx prisma db seed
-```
-
-4. **Start the development server**
-
-```bash
-npm run start:dev
-```
-
-The API will be available at `http://localhost:5000`
-
----
-
 ## API Endpoints
 
 ### Cocktails
@@ -154,33 +110,6 @@ The API will be available at `http://localhost:5000`
 - `name` - Filter by name (partial match)
 - `sortBy` - Sort by field (name, type, createdAt)
 - `sortOrder` - Sort direction (asc, desc)
-
-## Project Structure
-
-```
-koktajlownik/
-├── prisma/
-│   ├── schema.prisma          # Database schema
-│   ├── seed.ts                # Production seed data
-│   └── migrations/            # Database migrations
-├── src/
-│   ├── main.ts                # Application entry point
-│   ├── app.module.ts          # Root module
-│   ├── cocktail/              # Cocktail module
-│   │   ├── cocktail.controller.ts
-│   │   ├── cocktail.service.ts
-│   │   └── dto/
-│   ├── ingredient/            # Ingredient module
-│   │   ├── ingredient.controller.ts
-│   │   ├── ingredient.service.ts
-│   │   └── dto/
-│   └── database/              # Database module
-│       ├── database.controller.ts
-│       └── database.service.ts
-├── test/                      # Test files
-├── package.json
-└── tsconfig.json
-```
 
 ## Environment Variables
 
